@@ -39,7 +39,7 @@ Vérifier le site web :
 
 Navigateur --> http://192.168.0.15 --> site web --> page contact (Coordonnées)
 
-!^[SITE](./assets/site.png)
+![SITE](./assets/site.png)
 
 Cette étape permet de trouver la page visée que l'on souhaite modifier les données et connaître le nom du fichier exact
 
