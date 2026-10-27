@@ -63,10 +63,16 @@ Réponse : données bien changées à celles désirées (555-555-9876 & ouch.hac
 ### ....
 
 ## Correctif 1
-
-Commandes à effectuer ou étapes à mettre en place. 
-
-Capture d'écran de l'exploit qui ne fonctionne plus.
+Changer le mot de passe du compte bob (utilisé pour l'attaque) en un mdp plus robuste (long/complexe) et surtout qui ne comporte pas de liens envers ses enfants ou autre comme ceux d'avant
+Exemple : bananebrocolipatate
+Commandes utilisées :
+sudo passwd bob (on connait déjà le nom d'utilisateur) --> nouveau mdp --> confirmer nouveau mdp
+Ce correctif empêche l'attaquant de pouvoir se connecter par ssh au serveur, il n'a donc aucun autre moyen de modifier les fichiers du site puisqu'il ne peut plus s'y connecter.
+!MDP(./assets/mdp.png)
+!EXPLOIT1(./assets/exploit1.png)
+Corrigé : tester connexion ssh comme avant avec Sophie2014! --> ne fonctionne plus (Permission denied)
+!FONCTIONNEL(./assets/fonctionnel.png)
+Image confirmant que le site fonctionne bel et bien comme prévu après changement mdp
 
 ## Correctif 2
 
