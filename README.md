@@ -110,7 +110,7 @@ Corrigé : tester connexion ssh comme avant avec Sophie2014! --> ne fonctionne p
 
 ![FONCTIONNEL](./assets/fonctionnel.png)
 
-Image confirmant que le site fonctionne bel et bien comme prévu après changement mdp
+Image confirmant que le site fonctionne bel et bien comme prévu après le changement du mdp
 
 ## Correctif 2
 Réduire permission de modification des autres (o) sur le site.
@@ -132,6 +132,35 @@ Ce correctif permet d'accorder les permissions optimales et sécurisées du site
 
 Corrigé : lorsque l'on se connecte en ssh par le compte bob, on reçoit une erreur de Permission non accordée quand on tente de modifier la page contact.html du site.
 
-## Correctif 3
-Désactiver port 22 de SSH avec le pare-feu UFW :
+![FONCTIONNEL](./assets/fonctionnel.png)
 
+Image confirmant que le site fonctionne bel et bien comme prévu après le changement des permissions
+
+## Correctif 3
+Désactiver port 22 de SSH avec le pare-feu UFW
+
+Objectif : désactiver le port de ssh pour enlever l'ouverture aux attaquants de s'y connecter et apporter des modifications directement sur le serveur.
+
+Commandes utilisées :
+
+sudo ufw default deny incoming
+
+sudo ufw default allow outgoing
+
+sudo ufw allow 80/tcp (il faut s'assurer d'activer le port 80 pour HTTP car sinon désactivé par défaut)
+
+sudo ufw deny 22/tcp
+
+sudo ufw enable
+
+sudo ufw status numbered (vérification)
+
+![UFW](./assets/ufw.png)
+
+![EXPLOIT3](./assets/exploit3.png)
+
+Corrigé : si on essaie de se connecter au / joindre le serveur via SSH (port 22), on reçoit une erreur Timed out puisque le port en question n'est plus ouvert sur le serveur du site.
+
+![FONCTIONNEL](./assets/fonctionnel.png)
+
+Image confirmant que le site fonctionne bel et bien comme prévu après le changement des règles de pare-feu
