@@ -113,13 +113,25 @@ Corrigé : tester connexion ssh comme avant avec Sophie2014! --> ne fonctionne p
 Image confirmant que le site fonctionne bel et bien comme prévu après changement mdp
 
 ## Correctif 2
+Réduire permission de modification des autres (o) sur le site.
 
-Commandes à effectuer ou étapes à mettre en place.
+Commandes utilisées :
+1. Vérifier permissions actuelles
+sudo ls -l /var/www/html/contact.html
+![LS](./assets/ls.png)
+Les permissions sont à 777 (tout pour tous) pour la page contact, ce qui est extrêmement dangereux, il ne faut jamais faire cela. C'est en partie ce qui explique qu'on a pu modifier si facilement la page sur le site par le compte bob.
 
-Capture d'écran de l'exploit qui ne fonctionne plus. 
+2. Changer permissions (on pourrait juste changer pour page contact.html et autres, mais on va faire le tout pour sécuriser le site entièrement tant qu'à y être)
+sudo chmod 644 -R /var/www/html
+sudo chmod 755 /var/www/html
+![PERMISSIONS](./assets/permissions.png)
+
+![EXPLOIT2](./assets/exploit2.png)
+
+Ce correctif permet d'accorder les permissions optimales et sécurisées du site web afin d'éviter qu'un attaquant autre puisse porter modification à une page du site à partir du compte de bob ou autre que le compte de DaBoss (root)
+
+Corrigé : lorsque l'on se connecte en ssh par le compte bob, on reçoit une erreur de Permission non accordée quand on tente de modifier la page contact.html du site.
 
 ## Correctif 3
+Désactiver port 22 de SSH avec le pare-feu UFW :
 
-Commandes à effectuer ou étapes à mettre en place. 
-
-Capture d'écran de l'exploit qui ne fonctionne plus.
